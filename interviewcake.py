@@ -60,7 +60,6 @@ import unittest
 #         expected = [(0, 1), (3, 8), (9, 12)]
 #         self.assertEqual(actual, expected)
 
-
 # unittest.main(verbosity=2)
 
 ##############################################################################
@@ -82,27 +81,102 @@ def reverse(list_of_chars):
 
     return list_of_chars
 
-# Tests
+# # Tests
 
-class Test(unittest.TestCase):
+# class Test(unittest.TestCase):
 
-    def test_empty_string(self):
-        list_of_chars = []
-        reverse(list_of_chars)
-        expected = []
-        self.assertEqual(list_of_chars, expected)
+#     def test_empty_string(self):
+#         list_of_chars = []
+#         reverse(list_of_chars)
+#         expected = []
+#         self.assertEqual(list_of_chars, expected)
 
-    def test_single_character_string(self):
-        list_of_chars = ['A']
-        reverse(list_of_chars)
-        expected = ['A']
-        self.assertEqual(list_of_chars, expected)
+#     def test_single_character_string(self):
+#         list_of_chars = ['A']
+#         reverse(list_of_chars)
+#         expected = ['A']
+#         self.assertEqual(list_of_chars, expected)
 
-    def test_longer_string(self):
-        list_of_chars = ['A', 'B', 'C', 'D', 'E']
-        reverse(list_of_chars)
-        expected = ['E', 'D', 'C', 'B', 'A']
-        self.assertEqual(list_of_chars, expected)
+#     def test_longer_string(self):
+#         list_of_chars = ['A', 'B', 'C', 'D', 'E']
+#         reverse(list_of_chars)
+#         expected = ['E', 'D', 'C', 'B', 'A']
+#         self.assertEqual(list_of_chars, expected)
+
+# unittest.main(verbosity=2)
+
+##############################################################################
+
+##### REVERSE WORDS #####
+
+def reverse_chars(message, left, right):
+    """Similar to above function."""
+
+    while left < right:
+        message[left], message[right] = message[right], message[left]
+        left += 1
+        right -= 1
+
+    return message
+
+def reverse_words(message):
+    """Given a list of characters (message), reverse the list in place."""
+
+    # Decode the message by reversing the words
+    
+    reverse_chars(message, 0, len(message) - 1)
+
+    current_word_start = 0
+
+    for i in range(len(message) + 1):
+        if (i == len(message)) or (message[i] == ' '):
+            reverse_chars(message, current_word_start, i - 1)
+            current_word_start = i + 1
+
+    return message
 
 
-unittest.main(verbosity=2)
+# # Tests
+
+# class Test(unittest.TestCase):
+
+#     def test_one_word(self):
+#         message = list('vault')
+#         reverse_words(message)
+#         expected = list('vault')
+#         self.assertEqual(message, expected)
+
+#     def test_two_words(self):
+#         message = list('thief cake')
+#         reverse_words(message)
+#         expected = list('cake thief')
+#         self.assertEqual(message, expected)
+
+#     def test_three_words(self):
+#         message = list('one another get')
+#         reverse_words(message)
+#         expected = list('get another one')
+#         self.assertEqual(message, expected)
+
+#     def test_multiple_words_same_length(self):
+#         message = list('rat the ate cat the')
+#         reverse_words(message)
+#         expected = list('the cat ate the rat')
+#         self.assertEqual(message, expected)
+
+#     def test_multiple_words_different_lengths(self):
+#         message = list('yummy is cake bundt chocolate')
+#         reverse_words(message)
+#         expected = list('chocolate bundt cake is yummy')
+#         self.assertEqual(message, expected)
+
+#     def test_empty_string(self):
+#         message = list('')
+#         reverse_words(message)
+#         expected = list('')
+#         self.assertEqual(message, expected)
+
+# unittest.main(verbosity=2)
+
+##############################################################################
+

@@ -106,33 +106,112 @@ function reverse(arrayOfChars) {
 
 }
 
-// Tests
+// // Tests
 
-let desc = 'empty string';
-let input = ''.split('');
-reverse(input);
-let actual = input.join('');
-let expected = '';
-assertEqual(actual, expected, desc);
+// let desc = 'empty string';
+// let input = ''.split('');
+// reverse(input);
+// let actual = input.join('');
+// let expected = '';
+// assertEqual(actual, expected, desc);
 
-desc = 'single character string';
-input = 'A'.split('');
-reverse(input);
-actual = input.join('');
-expected = 'A';
-assertEqual(actual, expected, desc);
+// desc = 'single character string';
+// input = 'A'.split('');
+// reverse(input);
+// actual = input.join('');
+// expected = 'A';
+// assertEqual(actual, expected, desc);
 
-desc = 'longer string';
-input = 'ABCDE'.split('');
-reverse(input);
-actual = input.join('');
-expected = 'EDCBA';
-assertEqual(actual, expected, desc);
+// desc = 'longer string';
+// input = 'ABCDE'.split('');
+// reverse(input);
+// actual = input.join('');
+// expected = 'EDCBA';
+// assertEqual(actual, expected, desc);
 
-function assertEqual(a, b, desc) {
-  if (a === b) {
-    console.log(`${desc} ... PASS`);
-  } else {
-    console.log(`${desc} ... FAIL: ${a} != ${b}`);
+// function assertEqual(a, b, desc) {
+//   if (a === b) {
+//     console.log(`${desc} ... PASS`);
+//   } else {
+//     console.log(`${desc} ... FAIL: ${a} != ${b}`);
+//   }
+// }
+
+// REVERSE WORDS //
+
+function reverseChars(message, left, right) {
+  while (left < right) {
+    let holder = message[left];
+    message[left] = message[right];
+    message[right] = holder;
+    left++;
+    right--;
   }
 }
+
+function reverseWords(message) {
+
+  // Decode the message by reversing the words
+    reverseChars(message, 0, (message.length - 1));
+
+    let currentWordStart = 0;
+
+    for (let i = 0; i <= message.length; i++) {
+      if (i === message.length || message [i] === ' ') {
+        reverseChars(message, currentWordStart, i - 1);
+        currentWordStart = i + 1;
+      }
+    }
+}
+
+// // Tests
+
+// let desc = 'one word';
+// let input = 'vault'.split('');
+// reverseWords(input);
+// let actual = input.join('');
+// let expected = 'vault';
+// assertEqual(actual, expected, desc);
+
+// desc = 'two words';
+// input = 'thief cake'.split('');
+// reverseWords(input);
+// actual = input.join('');
+// expected = 'cake thief';
+// assertEqual(actual, expected, desc);
+
+// desc = 'three words';
+// input = 'one another get'.split('');
+// reverseWords(input);
+// actual = input.join('');
+// expected = 'get another one';
+// assertEqual(actual, expected, desc);
+
+// desc = 'multiple words same length';
+// input = 'rat the ate cat the'.split('');
+// reverseWords(input);
+// actual = input.join('');
+// expected = 'the cat ate the rat';
+// assertEqual(actual, expected, desc);
+
+// desc = 'multiple words different lengths';
+// input = 'yummy is cake bundt chocolate'.split('');
+// reverseWords(input);
+// actual = input.join('');
+// expected = 'chocolate bundt cake is yummy';
+// assertEqual(actual, expected, desc);
+
+// desc = 'empty string';
+// input = ''.split('');
+// reverseWords(input);
+// actual = input.join('');
+// expected = '';
+// assertEqual(actual, expected, desc);
+
+// function assertEqual(a, b, desc) {
+//   if (a === b) {
+//     console.log(`${desc} ... PASS`);
+//   } else {
+//     console.log(`${desc} ... FAIL: ${a} != ${b}`);
+//   }
+// }
